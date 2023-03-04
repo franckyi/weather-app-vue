@@ -1,17 +1,29 @@
 <template>
   <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
+    <q-input
+      rounded
+      standout
+      bottom-slots
+      v-model="text"
+      label="Location"
+      counter
     >
+      <template v-slot:prepend>
+        <q-icon name="place" />
+      </template>
+      <template v-slot:append>
+        <q-icon name="close" @click="text = ''" class="cursor-pointer" />
+      </template>
+
+      <template v-slot:hint> E.g. Rome </template>
+    </q-input>
   </q-page>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'IndexPage'
-})
+  name: "IndexPage",
+});
 </script>

@@ -36,7 +36,6 @@
 <script>
 import { defineComponent, ref } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
-import SearchLocation from "components/SearchLocation.vue";
 
 const linksList = [
   {
