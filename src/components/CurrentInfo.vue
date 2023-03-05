@@ -59,16 +59,36 @@
 </template>
 
 <script>
-import { ref, defineComponent, defineProps } from "vue";
-
-const props = defineProps({
-  humidity: Number,
-});
+import { ref, defineComponent } from "vue";
 
 export default defineComponent({
   name: "CurrentInfo",
   setup() {
-    return {};
+    return {
+      humidity: ref(null),
+    };
   },
 });
+
+let lat = ref(null);
+let lon = ref(null);
+
+const getWeatherByPosition = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      lat.value = position.coords.latitude;
+      lon.value = position.coords.longitude;
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat.value}&lon=${lon.value}&appid=61a20f5d41830810abfcc3d15f5f1b2a&units=metric`
+      )
+        .then((resp) => resp.json())
+        .then((data) => {
+          console.log(data);
+          const name = data.name;
+        });
+    });
+  }
+};
+
+getWeatherByPosition();
 </script>
