@@ -9,7 +9,7 @@
     </q-item-section>
 
     <q-item-section side>
-      <q-item-label caption>5 min ago</q-item-label>
+      <q-item-label>5 min ago</q-item-label>
     </q-item-section>
   </q-item>
 
@@ -23,7 +23,7 @@
     </q-item-section>
 
     <q-item-section side>
-      <q-item-label caption>5 min ago</q-item-label>
+      <q-item-label>5 min ago</q-item-label>
     </q-item-section>
   </q-item>
 
@@ -37,7 +37,7 @@
     </q-item-section>
 
     <q-item-section side>
-      <q-item-label caption>5 min ago</q-item-label>
+      <q-item-label>5 min ago</q-item-label>
     </q-item-section>
   </q-item>
 
@@ -51,7 +51,7 @@
     </q-item-section>
 
     <q-item-section side>
-      <q-item-label caption>5 min ago</q-item-label>
+      <q-item-label>5 min ago</q-item-label>
     </q-item-section>
   </q-item>
 
