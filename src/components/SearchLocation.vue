@@ -1,5 +1,4 @@
 <template>
-  <h3 text-h3>New York</h3>
   <q-input
     rounded
     standout

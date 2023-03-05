@@ -9,7 +9,7 @@
     </q-item-section>
 
     <q-item-section side>
-      <q-item-label>5 min ago</q-item-label>
+      <q-item-label>{{ humidity }}</q-item-label>
     </q-item-section>
   </q-item>
 
@@ -59,7 +59,11 @@
 </template>
 
 <script>
-import { ref, defineComponent } from "vue";
+import { ref, defineComponent, defineProps } from "vue";
+
+const props = defineProps({
+  humidity: Number,
+});
 
 export default defineComponent({
   name: "CurrentInfo",
