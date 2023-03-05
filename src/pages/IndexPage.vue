@@ -1,14 +1,14 @@
 <template>
   <q-page class="flex flex-center column">
     <SearchLocation></SearchLocation>
-    <ShortWeatherInfo></ShortWeatherInfo>
+    <CurrentInfo></CurrentInfo>
   </q-page>
 </template>
 
 <script>
 import { defineComponent, ref } from "vue";
 import SearchLocation from "src/components/SearchLocation.vue";
-import ShortWeatherInfo from "src/components/ShortWeatherInfo.vue";
+import CurrentInfo from "src/components/CurrentInfo.vue";
 
 export default defineComponent({
   name: "IndexPage",
@@ -17,6 +17,6 @@ export default defineComponent({
       text: ref(""),
     };
   },
-  components: { SearchLocation, ShortWeatherInfo },
+  components: { SearchLocation, CurrentInfo },
 });
 </script>
