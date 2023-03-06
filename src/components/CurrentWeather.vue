@@ -65,33 +65,39 @@
 
 <script setup>
 import { useCurrentWeatherStore } from "../stores/current-weather.js";
+import { useCoreStore } from "../stores/core.js";
 
 const currentWeather = useCurrentWeatherStore();
+const core = useCoreStore();
+
+// const getCurrentPosition = () => {
+//   navigator.geolocation.getCurrentPosition((position) => {
+//     currentWeather.lat = position.coords.latitude;
+//     currentWeather.lon = position.coords.longitude;
+//   });
+// };
 
 const getCurrentWeather = () => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      currentWeather.lat = position.coords.latitude;
-      currentWeather.lon = position.coords.longitude;
-      fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${currentWeather.lat}&lon=${currentWeather.lon}&appid=${currentWeather.API_KEY}&units=${currentWeather.units}`
-      )
-        .then((resp) => resp.json())
-        .then((data) => {
-          console.log(data);
-          currentWeather.name = data.name;
-          currentWeather.country = data.sys.country;
-          currentWeather.temp = data.main.temp;
-          currentWeather.tempFeel = data.main.feels_like;
-          currentWeather.tempMin = data.main.temp_min;
-          currentWeather.tempMax = data.main.temp_max;
-          currentWeather.humidity = data.main.humidity;
-          currentWeather.pressure = data.main.pressure;
-          currentWeather.windSpeed = data.wind.speed;
-        });
+  // if (navigator.geolocation) {
+  fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${currentWeather.lat}&lon=${currentWeather.lon}&appid=${core.API_KEY}&units=${core.units}`
+  )
+    .then((resp) => resp.json())
+    .then((data) => {
+      console.log(data);
+      currentWeather.name = data.name;
+      currentWeather.country = data.sys.country;
+      currentWeather.temp = data.main.temp;
+      currentWeather.tempFeel = data.main.feels_like;
+      currentWeather.tempMin = data.main.temp_min;
+      currentWeather.tempMax = data.main.temp_max;
+      currentWeather.humidity = data.main.humidity;
+      currentWeather.pressure = data.main.pressure;
+      currentWeather.windSpeed = data.wind.speed;
     });
-  }
+  // }
 };
 
+currentWeather.getLatLon();
 getCurrentWeather();
 </script>

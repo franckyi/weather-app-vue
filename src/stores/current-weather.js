@@ -2,8 +2,6 @@ import { defineStore } from "pinia";
 
 export const useCurrentWeatherStore = defineStore("current", {
   state: () => ({
-    API_KEY: "61a20f5d41830810abfcc3d15f5f1b2a",
-    units: "metric",
     name: null,
     lat: null,
     lon: null,
@@ -23,5 +21,11 @@ export const useCurrentWeatherStore = defineStore("current", {
     // increment() {
     //   this.counter++;
     // },
+    getLatLon() {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.lat = position.coords.latitude;
+        this.lon = position.coords.longitude;
+      });
+    },
   },
 });
