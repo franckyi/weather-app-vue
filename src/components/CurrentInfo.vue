@@ -1,5 +1,47 @@
 <template>
-  <h3 text-h3>{{ name }}</h3>
+  <h3 text-h3>{{ name }}, {{ country }}</h3>
+  <q-item>
+    <q-item-section top avatar>
+      <q-avatar color="primary" text-color="white" icon="thermostat" />
+    </q-item-section>
+
+    <q-item-section>
+      <q-item-label>Temperature</q-item-label>
+    </q-item-section>
+
+    <q-item-section side>
+      <q-item-label>{{ temp }} (feels like {{ tempFeel }} )</q-item-label>
+    </q-item-section>
+  </q-item>
+
+  <q-item>
+    <q-item-section top avatar>
+      <q-avatar color="primary" text-color="white" icon="thermostat" />
+    </q-item-section>
+
+    <q-item-section>
+      <q-item-label>Temperature Min-Max</q-item-label>
+    </q-item-section>
+
+    <q-item-section side>
+      <q-item-label>{{ tempMin }}-{{ tempMax }}</q-item-label>
+    </q-item-section>
+  </q-item>
+
+  <q-item>
+    <q-item-section top avatar>
+      <q-avatar color="primary" text-color="white" icon="thermostat" />
+    </q-item-section>
+
+    <q-item-section>
+      <q-item-label>Pressure</q-item-label>
+    </q-item-section>
+
+    <q-item-section side>
+      <q-item-label>{{ pressure }}</q-item-label>
+    </q-item-section>
+  </q-item>
+
   <q-item>
     <q-item-section top avatar>
       <q-avatar color="primary" text-color="white" icon="water_drop" />
@@ -25,20 +67,6 @@
 
     <q-item-section side>
       <q-item-label>{{ windSpeed }}</q-item-label>
-    </q-item-section>
-  </q-item>
-
-  <q-item>
-    <q-item-section top avatar>
-      <q-avatar color="primary" text-color="white" icon="thermostat" />
-    </q-item-section>
-
-    <q-item-section>
-      <q-item-label>Pressure</q-item-label>
-    </q-item-section>
-
-    <q-item-section side>
-      <q-item-label>{{ pressure }}</q-item-label>
     </q-item-section>
   </q-item>
 </template>
@@ -74,7 +102,7 @@ const getWeatherByPosition = () => {
           console.log(data);
           name.value = data.name;
           country.value = data.sys.country;
-          temp.value = data.main.humidity;
+          temp.value = data.main.temp;
           tempFeel.value = data.main.feels_like;
           tempMin.value = data.main.temp_min;
           tempMax.value = data.main.temp_max;
