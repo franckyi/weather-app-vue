@@ -1,5 +1,11 @@
 <template>
-  <h3 text-h3>{{ currentWeather.name }}, {{ currentWeather.country }}</h3>
+  <p text-h3>{{ currentWeather.name }}</p>
+  <p text-h1 text-color="white">{{ currentWeather.temp }}</p>
+  <q-item-section side>
+    <p text-italic>feels like {{ currentWeather.tempFeel }}</p>
+  </q-item-section>
+  <p text-h3>{{ currentWeather.description }}</p>
+  <img :src="currentWeather.iconUrl" alt="weather icon" height="48" />
   <q-card class="my-card bg-primary text-white">
     <q-card-section>
       <q-item>
@@ -9,18 +15,15 @@
 
         <q-item-section side>
           <strong text-color="white"
-            >{{ currentWeather.temp }} | min {{ currentWeather.tempMin }} - max
+            >min {{ currentWeather.tempMin }} - max
             {{ currentWeather.tempMax }}</strong
           >
-          <q-item-section side>
-            <p text-italic>feels like {{ currentWeather.tempFeel }}</p>
-          </q-item-section>
         </q-item-section>
       </q-item>
 
       <q-item>
         <q-item-section top avatar>
-          <q-avatar color="primary" text-color="white" icon="thermostat" />
+          <q-avatar color="secondary" text-color="white" icon="south_east" />
         </q-item-section>
 
         <q-item-section>
@@ -34,7 +37,7 @@
 
       <q-item>
         <q-item-section top avatar>
-          <q-avatar color="primary" text-color="white" icon="water_drop" />
+          <q-avatar color="secondary" text-color="white" icon="water_drop" />
         </q-item-section>
 
         <q-item-section>
@@ -48,7 +51,7 @@
 
       <q-item>
         <q-item-section top avatar>
-          <q-avatar color="primary" text-color="white" icon="air" />
+          <q-avatar color="secondary" text-color="white" icon="air" />
         </q-item-section>
 
         <q-item-section>
@@ -70,12 +73,7 @@ import { useCoreStore } from "../stores/core.js";
 const currentWeather = useCurrentWeatherStore();
 const core = useCoreStore();
 
-// const getCurrentPosition = () => {
-//   navigator.geolocation.getCurrentPosition((position) => {
-//     currentWeather.lat = position.coords.latitude;
-//     currentWeather.lon = position.coords.longitude;
-//   });
-// };
+currentWeather.getLatLon();
 
 const getCurrentWeather = () => {
   // if (navigator.geolocation) {
@@ -91,6 +89,9 @@ const getCurrentWeather = () => {
       currentWeather.tempFeel = data.main.feels_like;
       currentWeather.tempMin = data.main.temp_min;
       currentWeather.tempMax = data.main.temp_max;
+      currentWeather.description = data.weather[0].description;
+      currentWeather.icon = data.weather[0].icon;
+      currentWeather.iconUrl = `https://openweathermap.org/img/wn/${currentWeather.icon}@2x.png`;
       currentWeather.humidity = data.main.humidity;
       currentWeather.pressure = data.main.pressure;
       currentWeather.windSpeed = data.wind.speed;
@@ -98,6 +99,5 @@ const getCurrentWeather = () => {
   // }
 };
 
-currentWeather.getLatLon();
 getCurrentWeather();
 </script>

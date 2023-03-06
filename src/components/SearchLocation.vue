@@ -1,10 +1,11 @@
 <template>
   <q-input
     rounded
+    dark
     standout
     bottom-slots
     v-model="text"
-    label="Location"
+    label="Search Location"
     counter
   >
     <template v-slot:prepend>
@@ -13,8 +14,6 @@
     <template v-slot:append>
       <q-icon name="close" @click="text = ''" class="cursor-pointer" />
     </template>
-
-    <template v-slot:hint> E.g. Rome </template>
   </q-input>
 </template>
 
