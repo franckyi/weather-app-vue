@@ -75,7 +75,6 @@ const currentWeather = useCurrentWeatherStore();
 const core = useCoreStore();
 
 const getCurrentWeather = () => {
-  // if (navigator.geolocation) {
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${currentWeather.lat}&lon=${currentWeather.lon}&appid=${core.API_KEY}&units=${core.units}`
   )
@@ -95,11 +94,12 @@ const getCurrentWeather = () => {
       currentWeather.pressure = data.main.pressure;
       currentWeather.windSpeed = data.wind.speed;
     });
-  // }
 };
 
 currentWeather.getLatLon();
-getCurrentWeather();
+if (navigator.geolocation) {
+  getCurrentWeather();
+}
 </script>
 
 <style scoped>
