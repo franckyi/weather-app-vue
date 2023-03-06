@@ -1,4 +1,5 @@
 <template>
+  <h3 text-h3>{{ name }}</h3>
   <q-item>
     <q-item-section top avatar>
       <q-avatar color="primary" text-color="white" icon="water_drop" />
@@ -23,7 +24,7 @@
     </q-item-section>
 
     <q-item-section side>
-      <q-item-label>{{ name }}</q-item-label>
+      <q-item-label>{{ windSpeed }}</q-item-label>
     </q-item-section>
   </q-item>
 
@@ -37,34 +38,28 @@
     </q-item-section>
 
     <q-item-section side>
-      <q-item-label>5 min ago</q-item-label>
+      <q-item-label>{{ pressure }}</q-item-label>
     </q-item-section>
   </q-item>
-
-  <q-item>
-    <q-item-section top avatar>
-      <q-avatar color="primary" text-color="white" icon="water" />
-    </q-item-section>
-
-    <q-item-section>
-      <q-item-label>Sea level</q-item-label>
-    </q-item-section>
-
-    <q-item-section side>
-      <q-item-label>5 min ago</q-item-label>
-    </q-item-section>
-  </q-item>
-
-  <q-separator spaced inset="item" />
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, defineProps } from "vue";
+const props = defineProps({
+  name: String,
+});
 
-let humidity = ref(null);
 let name = ref(null);
+let country = ref(null);
 let lat = ref(null);
 let lon = ref(null);
+let temp = ref(null);
+let tempFeel = ref(null);
+let tempMin = ref(null);
+let tempMax = ref(null);
+let humidity = ref(null);
+let windSpeed = ref(null);
+let pressure = ref(null);
 
 const getWeatherByPosition = () => {
   if (navigator.geolocation) {
@@ -78,9 +73,17 @@ const getWeatherByPosition = () => {
         .then((data) => {
           console.log(data);
           name.value = data.name;
+          country.value = data.sys.country;
+          temp.value = data.main.humidity;
+          tempFeel.value = data.main.feels_like;
+          tempMin.value = data.main.temp_min;
+          tempMax.value = data.main.temp_max;
           humidity.value = data.main.humidity;
+          pressure.value = data.main.pressure;
+          windSpeed.value = data.wind.speed;
           console.log(humidity.value);
           console.log(name.value);
+          console.log(pressure.value);
         });
     });
   }
