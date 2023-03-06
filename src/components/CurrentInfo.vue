@@ -23,7 +23,7 @@
     </q-item-section>
 
     <q-item-section side>
-      <q-item-label>5 min ago</q-item-label>
+      <q-item-label>{{ name }}</q-item-label>
     </q-item-section>
   </q-item>
 
@@ -58,18 +58,11 @@
   <q-separator spaced inset="item" />
 </template>
 
-<script>
-import { ref, defineComponent } from "vue";
+<script setup>
+import { ref } from "vue";
 
-export default defineComponent({
-  name: "CurrentInfo",
-  setup() {
-    return {
-      humidity: ref(null),
-    };
-  },
-});
-
+let humidity = ref(null);
+let name = ref(null);
 let lat = ref(null);
 let lon = ref(null);
 
@@ -84,7 +77,10 @@ const getWeatherByPosition = () => {
         .then((resp) => resp.json())
         .then((data) => {
           console.log(data);
-          const name = data.name;
+          name.value = data.name;
+          humidity.value = data.main.humidity;
+          console.log(humidity.value);
+          console.log(name.value);
         });
     });
   }
