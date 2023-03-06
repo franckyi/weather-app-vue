@@ -6,6 +6,7 @@ export const useCurrentWeatherStore = defineStore("current", {
     lat: null,
     lon: null,
     country: null,
+    tempUnit: null,
     temp: null,
     tempFeel: null,
     tempMin: null,

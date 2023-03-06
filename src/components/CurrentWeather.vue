@@ -1,11 +1,12 @@
 <template>
-  <p text-h3>{{ currentWeather.name }}</p>
-  <p text-h1 text-color="white">{{ currentWeather.temp }}</p>
-  <q-item-section side>
-    <p text-italic>feels like {{ currentWeather.tempFeel }}</p>
-  </q-item-section>
-  <p text-h3>{{ currentWeather.description }}</p>
-  <img :src="currentWeather.iconUrl" alt="weather icon" height="48" />
+  <h5>{{ currentWeather.name }}</h5>
+  <h1>{{ currentWeather.temp }} °C</h1>
+  <p class="text-italic">feels like {{ currentWeather.tempFeel }}</p>
+  <div class="flex items-center">
+    <img :src="currentWeather.iconUrl" alt="weather icon" height="96" />
+    <h4>{{ currentWeather.description }}</h4>
+  </div>
+
   <q-card class="my-card bg-primary text-white">
     <q-card-section>
       <q-item>
@@ -73,8 +74,6 @@ import { useCoreStore } from "../stores/core.js";
 const currentWeather = useCurrentWeatherStore();
 const core = useCoreStore();
 
-currentWeather.getLatLon();
-
 const getCurrentWeather = () => {
   // if (navigator.geolocation) {
   fetch(
@@ -99,5 +98,19 @@ const getCurrentWeather = () => {
   // }
 };
 
+currentWeather.getLatLon();
 getCurrentWeather();
 </script>
+
+<style scoped>
+p,
+h4,
+h5 {
+  margin: 0;
+  color: white;
+}
+h1 {
+  margin: 1rem auto;
+  color: white;
+}
+</style>
