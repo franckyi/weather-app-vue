@@ -5,6 +5,7 @@
     standout
     bottom-slots
     v-model="text"
+    @change="getResults"
     label="Search Location"
     counter
   >
@@ -28,17 +29,14 @@ const core = useCoreStore();
 
 let text = ref("");
 
-// const getDifferentLatLon = () => {
-//   fetch(
-//     `http://api.openweathermap.org/geo/1.0/direct?q=${text.value}&limit=5&appid=${core.API_KEY}`
-//   )
-//     .then((response) => response.json())
-//     .then((data) => {
-//       console.log(data);
-//       console.log(data.lat);
-//       console.log(data.lon);
-//       currentWeather.lat = data.lat;
-//       currentWeather.lon = data.lon;
-//     });
-// };
+const getResults = () => {
+  fetch(
+    `http://api.openweathermap.org/geo/1.0/direct?q=${text.value}&limit=5&appid=${core.API_KEY}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    });
+  text.value = "";
+};
 </script>
