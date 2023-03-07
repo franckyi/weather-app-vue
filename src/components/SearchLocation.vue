@@ -56,10 +56,10 @@ const currentWeather = useCurrentWeatherStore();
 const core = useCoreStore();
 
 let text = ref("");
-model = ref(null);
-options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
-dense = ref(false);
-denseOpts = ref(false);
+let model = ref(null);
+let options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
+let dense = ref(false);
+let denseOpts = ref(false);
 
 const getResults = () => {
   fetch(
