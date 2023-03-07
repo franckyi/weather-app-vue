@@ -74,33 +74,34 @@ import { useCoreStore } from "../stores/core.js";
 const currentWeather = useCurrentWeatherStore();
 const core = useCoreStore();
 
-const getCurrentWeather = () => {
-  fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${currentWeather.lat}&lon=${currentWeather.lon}&appid=${core.API_KEY}&units=${core.units}`
-  )
-    .then((resp) => resp.json())
-    .then((data) => {
-      console.log(data);
-      currentWeather.name = data.name;
-      currentWeather.country = data.sys.country;
-      currentWeather.temp = data.main.temp;
-      currentWeather.tempFeel = data.main.feels_like;
-      currentWeather.tempMin = data.main.temp_min;
-      currentWeather.tempMax = data.main.temp_max;
-      currentWeather.description = data.weather[0].description;
-      currentWeather.icon = data.weather[0].icon;
-      currentWeather.iconUrl = `https://openweathermap.org/img/wn/${currentWeather.icon}@2x.png`;
-      currentWeather.humidity = data.main.humidity;
-      currentWeather.pressure = data.main.pressure;
-      currentWeather.windSpeed = data.wind.speed;
-    });
-};
-
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition((position) => {
     currentWeather.lat = position.coords.latitude;
     currentWeather.lon = position.coords.longitude;
   });
+
+  function getCurrentWeather() {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${currentWeather.lat}&lon=${currentWeather.lon}&appid=${core.API_KEY}&units=${core.units}`
+    )
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data);
+        currentWeather.name = data.name;
+        currentWeather.country = data.sys.country;
+        currentWeather.temp = data.main.temp;
+        currentWeather.tempFeel = data.main.feels_like;
+        currentWeather.tempMin = data.main.temp_min;
+        currentWeather.tempMax = data.main.temp_max;
+        currentWeather.description = data.weather[0].description;
+        currentWeather.icon = data.weather[0].icon;
+        currentWeather.iconUrl = `https://openweathermap.org/img/wn/${currentWeather.icon}@2x.png`;
+        currentWeather.humidity = data.main.humidity;
+        currentWeather.pressure = data.main.pressure;
+        currentWeather.windSpeed = data.wind.speed;
+      });
+  }
+
   getCurrentWeather();
 }
 </script>
