@@ -70,12 +70,12 @@ function filterFn(val, update) {
 
   getResults();
 
-  update(() => {
-    const needle = val.toLowerCase();
-    options.value = stringOptions.filter(
-      (v) => v.toLowerCase().indexOf(needle) > -1
-    );
-  });
+  // update(() => {
+  //   const needle = val.toLowerCase();
+  //   options.value = stringOptions.filter(
+  //     (v) => v.toLowerCase().indexOf(needle) > -1
+  //   );
+  // });
 }
 
 const getResults = () => {
