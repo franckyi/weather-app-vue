@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 export const useCurrentWeatherStore = defineStore("current", {
   state: () => ({
     name: null,
+    text: null,
     lat: null,
     lon: null,
     country: null,
