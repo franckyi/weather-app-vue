@@ -4,7 +4,7 @@
     dark
     standout
     bottom-slots
-    v-model="currentWeather.text"
+    v-model="text"
     label="Search Location"
     counter
   >
@@ -12,37 +12,33 @@
       <q-icon name="place" />
     </template>
     <template v-slot:append>
-      <q-icon
-        name="close"
-        @click="currentWeather.text = ''"
-        class="cursor-pointer"
-      />
+      <q-icon name="close" @click="text = ''" class="cursor-pointer" />
     </template>
   </q-input>
-  <h3>{{ currentWeather.text }}</h3>
+  <h3>{{ text }}</h3>
 </template>
 
 <script setup>
-import { watch } from "vue";
+import { ref } from "vue";
 import { useCurrentWeatherStore } from "../stores/current-weather.js";
 import { useCoreStore } from "../stores/core.js";
 
 const currentWeather = useCurrentWeatherStore();
 const core = useCoreStore();
 
-const getDifferentLatLon = () => {
-  fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${currentWeather.text}&limit=5&appid=${core.API_KEY}`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      console.log(data.lat);
-      console.log(data.lon);
-      currentWeather.lat = data.lat;
-      currentWeather.lon = data.lon;
-    });
-};
+let text = ref("");
 
-watch(currentWeather.text, getDifferentLatLon());
+// const getDifferentLatLon = () => {
+//   fetch(
+//     `http://api.openweathermap.org/geo/1.0/direct?q=${text.value}&limit=5&appid=${core.API_KEY}`
+//   )
+//     .then((response) => response.json())
+//     .then((data) => {
+//       console.log(data);
+//       console.log(data.lat);
+//       console.log(data.lon);
+//       currentWeather.lat = data.lat;
+//       currentWeather.lon = data.lon;
+//     });
+// };
 </script>

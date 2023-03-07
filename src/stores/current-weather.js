@@ -19,18 +19,6 @@ export const useCurrentWeatherStore = defineStore("current", {
     pressure: null,
     windSpeed: null,
   }),
-  getters: {
-    // doubleCount: (state) => state.counter * 2,
-  },
-  actions: {
-    // increment() {
-    //   this.counter++;
-    // },
-    getLatLon() {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.lat = position.coords.latitude;
-        this.lon = position.coords.longitude;
-      });
-    },
-  },
+  getters: {},
+  actions: {},
 });

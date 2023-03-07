@@ -96,8 +96,11 @@ const getCurrentWeather = () => {
     });
 };
 
-currentWeather.getLatLon();
 if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition((position) => {
+    currentWeather.lat = position.coords.latitude;
+    currentWeather.lon = position.coords.longitude;
+  });
   getCurrentWeather();
 }
 </script>
