@@ -16,35 +16,6 @@
       <q-icon name="close" @click="text = ''" class="cursor-pointer" />
     </template>
   </q-input>
-
-  <q-select
-    rounded
-    outlined
-    bottom-slots
-    v-model="model"
-    :options="options"
-    label="Label"
-    counter
-    maxlength="12"
-    :dense="dense"
-    :options-dense="denseOpts"
-  >
-    <template v-slot:before>
-      <q-icon name="flight_takeoff" />
-    </template>
-
-    <template v-slot:append>
-      <q-icon
-        v-if="model !== ''"
-        name="close"
-        @click.stop.prevent="model = ''"
-        class="cursor-pointer"
-      />
-      <q-icon name="search" @click.stop.prevent />
-    </template>
-
-    <template v-slot:hint> Field hint </template>
-  </q-select>
 </template>
 
 <script setup>
