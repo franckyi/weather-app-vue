@@ -18,7 +18,7 @@
   </q-input>
   <div class="results">
     <template v-for="r in results" :key="r.id">
-      <li>{{ r }}</li>
+      <button>{{ r }}</button>
     </template>
   </div>
 </template>
@@ -65,5 +65,9 @@ const getResults = () => {
   padding: 5px;
   font-size: 16px;
   border-radius: 5px;
+}
+button {
+  border: none;
+  background: none;
 }
 </style>
