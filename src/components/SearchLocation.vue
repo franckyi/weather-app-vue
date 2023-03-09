@@ -56,6 +56,19 @@ const getResults = () => {
           currentWeather.lon
         );
         currentWeather.getCurrentWeather();
+      } else if (
+        data.length === 2 &&
+        data[0].name === data[1].name &&
+        data[0].state === data[1].state
+      ) {
+        currentWeather.lat = data[0].lat;
+        currentWeather.lon = data[0].lon;
+        console.warn(
+          "currentWeather updated: ",
+          currentWeather.lat,
+          currentWeather.lon
+        );
+        currentWeather.getCurrentWeather();
       }
 
       data.forEach((obj) =>
