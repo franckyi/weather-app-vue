@@ -17,9 +17,9 @@
     </template>
   </q-input>
   <div class="results">
-    <template v-for="r in results" :key="r.id">
-      <button>{{ r }}</button>
-    </template>
+    <button v-for="r in results" :key="r.id" @click="updateLatLon(r)">
+      {{ r }}
+    </button>
   </div>
 </template>
 
@@ -46,13 +46,21 @@ const getResults = () => {
       console.log(data);
       data.forEach((obj) =>
         results.value.push(
-          `${id.value++}, ${obj.name}, ${obj.state}, ${obj.country}
-          ( Lat ${obj.lat} / Lon ${obj.lon} )`
+          `{ id: ${id.value++}, name: ${obj.name}, state: ${
+            obj.state
+          }, country: ${obj.country}, lat: ${obj.lat}, lon: ${obj.lon} }`
         )
       );
       console.log(results.value);
     });
   text.value = "";
+};
+
+const updateLatLon = (r) => {
+  console.log(r);
+  // currentWeather.lat = r.lat.value; // TODO: NON FUNZIONA!
+  console.log(currentWeather.lat);
+  // currentWeather.lon = r.lon;
 };
 </script>
 
