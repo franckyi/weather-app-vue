@@ -4,6 +4,7 @@
     dark
     standout
     bottom-slots
+    list="search-results"
     v-model="text"
     @change="getResults"
     label="Search Location"
@@ -16,11 +17,11 @@
       <q-icon name="close" @click="text = ''" class="cursor-pointer" />
     </template>
   </q-input>
-  <div class="results">
-    <button v-for="r in results" :key="r.id" @click="updateLatLon(r)">
-      {{ r }}
-    </button>
-  </div>
+  <datalist id="search-results" class="results">
+    <option v-for="result in results" :key="result.id">
+      {{ result }}
+    </option>
+  </datalist>
 </template>
 
 <script setup>
@@ -44,23 +45,24 @@ const getResults = () => {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+      if (data.length === 1) {
+        console.warn("new lat: ", data[0].lat);
+        console.warn("new lon: ", data[0].lon);
+        currentWeather.lat = data[0].lat;
+        currentWeather.lon = data[0].lon;
+        console.warn(
+          "currentWeather updated: ",
+          currentWeather.lat,
+          currentWeather.lon
+        );
+        currentWeather.getCurrentWeather();
+      }
+
       data.forEach((obj) =>
-        results.value.push(
-          `{ id: ${id.value++}, name: ${obj.name}, state: ${
-            obj.state
-          }, country: ${obj.country}, lat: ${obj.lat}, lon: ${obj.lon} }`
-        )
+        results.value.push(`${obj.name}, ${obj.state}, ${obj.country}`)
       );
-      console.log(results.value);
     });
   text.value = "";
-};
-
-const updateLatLon = (r) => {
-  console.log(r);
-  // currentWeather.lat = r.lat.value; // TODO: NON FUNZIONA!
-  console.log(currentWeather.lat);
-  // currentWeather.lon = r.lon;
 };
 </script>
 
