@@ -14,15 +14,15 @@
           <q-avatar color="secondary" text-color="white" icon="thermostat" />
         </q-item-section>
 
-        <q-item-section side class="text-deep-purple-3 min-max">
+        <q-item-section side class="text-blue-1 min-max">
           <div>
-            <span class="text-deep-purple-3"> max</span>
+            <span class="text-blue-1"> max</span>
             <strong class="text-deep-purple-1">{{
               currentWeather.tempMax
             }}</strong>
           </div>
           <div>
-            <span class="text-deep-purple-3">min</span>
+            <span class="text-blue-1">min</span>
             <strong class="text-deep-purple-1">{{
               currentWeather.tempMin
             }}</strong>
@@ -35,7 +35,7 @@
           <q-avatar color="secondary" text-color="white" icon="south_east" />
         </q-item-section>
 
-        <q-item-section class="text-deep-purple-3">
+        <q-item-section class="text-blue-1">
           <q-item-label>Pressure</q-item-label>
         </q-item-section>
 
@@ -49,7 +49,7 @@
           <q-avatar color="secondary" text-color="white" icon="water_drop" />
         </q-item-section>
 
-        <q-item-section class="text-deep-purple-3">
+        <q-item-section class="text-blue-1">
           <q-item-label>Humidity</q-item-label>
         </q-item-section>
 
@@ -63,7 +63,7 @@
           <q-avatar color="secondary" text-color="white" icon="air" />
         </q-item-section>
 
-        <q-item-section class="text-deep-purple-3">
+        <q-item-section class="text-blue-1">
           <q-item-label>Wind speed</q-item-label>
         </q-item-section>
 
